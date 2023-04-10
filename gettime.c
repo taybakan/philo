@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   gettime.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 03:04:04 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/09 07:24:25 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/09 06:36:27 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/09 06:36:45 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
-void	*routine(t_philo *philo)
+t_time	ft_get_time(void)
 {
-    ft_setup(philo);
-    if(philo->id % 2 == 0)
-	    usleep(50);
-    while (0)
-        getforks(philo);
-	return (NULL);
-}
+	struct timeval		tv;
+	t_time				time;
 
-void    ft_setup(t_philo *philo)
-{
-    philo->t_init = ft_get_time();
-    philo->last_eat = ft_get_time(); 
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
 }
-
-//void    getforks(t_philo *philo);
-//{   
-//    (void)philo;
-//}
