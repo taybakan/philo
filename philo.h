@@ -39,6 +39,8 @@ void	*routine(t_philo *philo);
 void	ft_creat(int argc, char **argv, t_args *args);
 void    ft_setup(t_philo *philo);
 void	getforks(t_philo *philo);
+void    dinner(t_philo *philo);
+void    ph_sleep(t_philo *philo);
 t_time	ft_get_time(void);
 
 #endif
