@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:32:14 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/10 17:37:17 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:32:05 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,30 @@
 void	ft_mutex_init(t_args *args)
 {
 	int				i;
-	pthread_mutex_t	death;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*w;
+	pthread_mutex_t *pl;
 
 	forks = malloc(sizeof(pthread_mutex_t) * args->n_philo);
+	w = malloc(sizeof(pthread_mutex_t));
+	pl = malloc(sizeof(pthread_mutex_t));
 	i = 0;
 	while (i < args->n_philo)
 	{
-		args->philo[i]->left_fork_mutex = &forks[i];
-		args->philo[i]->right_fork_mutex = &forks[(i + 1) % args->n_philo]; 
+		args->philo[i]->right_fork_mutex = &forks[i];
+		args->philo[i]->left_fork_mutex = &forks[(i + 1) % args->n_philo];
+		args->philo[i]->write = &w[0];
+		args->philo[i]->plate = &pl[0];
 		i++;
 	}
 	i = 0;
 	while (i < args->n_philo)
 	{
 		pthread_mutex_init(args->philo[i]->left_fork_mutex, NULL);
-		pthread_mutex_init(args->philo[i]->right_fork_mutex, NULL);
-		args->philo[i]->death = &death;
 		i++;
 	}
-	pthread_mutex_init(&death, NULL);
+	pthread_mutex_init(args->philo[0]->write, NULL);
+	pthread_mutex_init(args->philo[0]->plate, NULL);
 }
 
 void	ft_creat(int argc, char **argv, t_args *args)

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 01:26:43 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/09 03:14:08 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/12 21:47:40 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/13 01:11:39 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+int free_exit(int i, t_args *args)
 {
-	t_args	*args;
-
-	if(argc < 5 || argc > 6)
-		return 0;
-	if(!ft_checkinput(argv))
-		return 0;
-	args = malloc(sizeof(t_args));
-	ft_creat(argc, argv, args);
-	thread_init(args);
-	return (0);
+    i = -1;
+    while(i++ < args->n_philo)
+        free(args->philo[i]);
+    free(args);
+    exit(0);
 }

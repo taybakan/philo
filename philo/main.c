@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_init.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 01:26:54 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/10 16:59:37 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/09 01:26:43 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/12 23:53:16 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    thread_init(t_args *args)
+int	main(int argc, char **argv)
 {
-    int     i;
+	t_args	*args;
 
-    i = 0;
-    while(i < args->n_philo)
-    {
-		printf("philo id: %d\n", args->philo[i]->id);
-        pthread_create(&args->philo[i]->thread, NULL, (void *)routine, args->philo[i]);
-		i++;
-    }
-	i = 0;
-	while(i < args->n_philo)
-	{
-		pthread_join(args->philo[i]->thread, NULL);
-		i++;
-	}
+	if(argc < 5 || argc > 6)
+		return 0;
+	if(!ft_checkinput(argv))
+		return 0;
+	args = malloc(sizeof(t_args));
+	ft_creat(argc, argv, args);
+	thread_init(args);
+	return (0);
 }

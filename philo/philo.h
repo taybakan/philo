@@ -18,29 +18,35 @@ typedef struct s_philo
 	int				t_sleep;
 	int				n_eat;
 	int				total_eat;
+	int				rip;
 	t_time			last_eat;
 	t_time			t_init;
 	pthread_t		thread;
-	pthread_mutex_t *death;
+	pthread_mutex_t	*plate;
+	pthread_mutex_t *write;
 	pthread_mutex_t	*left_fork_mutex;
 	pthread_mutex_t	*right_fork_mutex;
 }		t_philo;
 
 typedef struct s_args
 {
-	int			n_philo;
-	t_philo		**philo;
+	int				n_philo;
+	t_philo			**philo;
 }		t_args;
 
 long	ft_atol(const char *str);
 int     ft_checkinput(char **argv);
 void    thread_init(t_args *args);
+void	ph_wait(int w_time, int p_time);
 void	*routine(t_philo *philo);
 void	ft_creat(int argc, char **argv, t_args *args);
-void    ft_setup(t_philo *philo);
 void	getforks(t_philo *philo);
 void    dinner(t_philo *philo);
 void    ph_sleep(t_philo *philo);
+int    	ph_write(t_philo *philo, char *status);
+int     ft_isdead(t_args *args);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int 	free_exit(int i, t_args *args);
 t_time	ft_get_time(void);
 
 #endif

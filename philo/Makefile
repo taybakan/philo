@@ -1,12 +1,12 @@
 NAME = philo
 
-SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c
+SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c write.c azrael.c exit.c
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
-FLAGS_DATARACE = -fsanitize=thread -g
+FLAGS_DATARACE = -fsanitize=address
 
 all: $(NAME)
 
@@ -20,6 +20,7 @@ clean:
 	@rm -rf philo.dSYM
 
 fclean: clean
+	@rm -rf $(NAME)
 	@rm -rf philo.a
 
 re: fclean all
