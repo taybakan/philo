@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:54 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:11:21 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:20:35 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	thread_init(t_args *args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < args->n_philo)

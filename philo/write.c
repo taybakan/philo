@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 01:58:35 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:11:49 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:21:06 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ph_write(t_philo *philo, char *status)
 {
-	t_time now;
+	t_time	now;
 
 	now = ft_get_time() - philo->t_init;
 	pthread_mutex_lock(philo->write);

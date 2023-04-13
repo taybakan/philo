@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:14:41 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:20:52 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ph_wait(int w_time, int p_time)
 	{
 		t = ft_get_time();
 		usleep(3);
-		//printf("%d\t %d\n", (int)(t - p_time), w_time);
 	}
 }
 
