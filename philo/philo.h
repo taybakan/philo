@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 04:10:04 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:24:02 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:30:08 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_args
 	t_philo					**philo;
 }							t_args;
 
-long						ft_atol(char *str);
+int							ft_atol(char *str);
 int							ft_checkinput(char **argv);
 void						thread_init(t_args *args);
 void						ph_wait(int w_time, int p_time);

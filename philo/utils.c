@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:24:56 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:32:06 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	ft_check(char *str)
 	}
 }
 
-long	ft_atol(char *str)
+int	ft_atol(char *str)
 {
 	long	i;
 	long	sign;
@@ -90,5 +90,5 @@ long	ft_atol(char *str)
 	}
 	if ((result * sign) == 2147483648)
 		exit(1);
-	return (result * sign);
+	return ((int)result * sign);
 }

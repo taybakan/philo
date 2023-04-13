@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:32:14 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:08:33 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:31:29 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_mutex_init(t_args *args)
 		i++;
 	}
 	i = -1;
-	while (i++ < args->n_philo)
+	while (++i < args->n_philo)
 		pthread_mutex_init(args->philo[i]->left_fork_mutex, NULL);
 	pthread_mutex_init(args->philo[0]->write, NULL);
 	pthread_mutex_init(args->philo[0]->plate, NULL);
