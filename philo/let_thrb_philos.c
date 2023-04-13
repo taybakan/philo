@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:32:14 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 01:32:05 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:08:33 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_mutex_init(t_args *args)
 	int				i;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*w;
-	pthread_mutex_t *pl;
+	pthread_mutex_t	*pl;
 
 	forks = malloc(sizeof(pthread_mutex_t) * args->n_philo);
 	w = malloc(sizeof(pthread_mutex_t));
@@ -31,12 +31,9 @@ void	ft_mutex_init(t_args *args)
 		args->philo[i]->plate = &pl[0];
 		i++;
 	}
-	i = 0;
-	while (i < args->n_philo)
-	{
+	i = -1;
+	while (i++ < args->n_philo)
 		pthread_mutex_init(args->philo[i]->left_fork_mutex, NULL);
-		i++;
-	}
 	pthread_mutex_init(args->philo[0]->write, NULL);
 	pthread_mutex_init(args->philo[0]->plate, NULL);
 }
@@ -59,7 +56,7 @@ void	ft_creat(int argc, char **argv, t_args *args)
 		if (argc == 6)
 			args->philo[i]->n_eat = ft_atol(argv[5]);
 		else
-		args->philo[i]->n_eat = -1;
+			args->philo[i]->n_eat = -1;
 		i++;
 	}
 	ft_mutex_init(args);

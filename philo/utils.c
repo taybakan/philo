@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 01:13:35 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:14:41 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ph_wait(int w_time, int p_time)
 	t_time	t;
 
 	t = ft_get_time();
-	while((int)(t - p_time) < w_time)
+	while ((int)(t - p_time) < w_time)
 	{
 		t = ft_get_time();
 		usleep(3);
@@ -40,27 +40,48 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-long	ft_atol(const char *str)
+static void	ft_check(char *str)
 {
-	int		c;
-	int		s;
-	long	res;
+	size_t	i;
 
-	c = 0;
-	s = 1;
-	res = 0;
-	while ((str[c] >= '\t' && str[c] <= '\r') || str[c] == ' ')
-		c++;
-	if (str[c] == '+' || str[c] == '-')
+	i = 0;
+	if (!ft_isdigit(str[i]) && str[i + 1] == '\0')
+		ft_error();
+	if (!ft_isdigit(str[i] && !ft_isdigit(str[i + 1])))
+		i++;
+	while (str[i])
 	{
-		if (str[c] == '-')
-			s *= -1;
-		c++;
+		if (!ft_isdigit(str[i]))
+			ft_error();
+		i++;
 	}
-	while (str[c] >= '0' && str[c] <= '9')
+}
+
+long	ft_atol(char *str)
+{
+	long	i;
+	long	sign;
+	long	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	ft_check(str);
+	while (str[i] == 32 || (str[i] <= 13 && str[i] >= 9))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		res = (str[c] - '0') + (res * 10);
-		c++;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	return (res * s);
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + (str[i++] - '0');
+		if (result > 2147483648)
+			ft_error();
+	}
+	if ((result * sign) == 2147483648)
+		ft_error();
+	return (result * sign);
 }
