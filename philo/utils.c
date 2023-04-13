@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:20:52 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:24:56 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void	ph_wait(int w_time, int p_time)
 		t = ft_get_time();
 		usleep(3);
 	}
+}
+
+int	ft_isdigit(int c)
+{
+	if (c <= '9' && c >= '0')
+		return (1);
+	else
+		return (0);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -45,13 +53,13 @@ static void	ft_check(char *str)
 
 	i = 0;
 	if (!ft_isdigit(str[i]) && str[i + 1] == '\0')
-		ft_error();
+		exit(1);
 	if (!ft_isdigit(str[i] && !ft_isdigit(str[i + 1])))
 		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error();
+			exit(1);
 		i++;
 	}
 }
@@ -78,9 +86,9 @@ long	ft_atol(char *str)
 	{
 		result = result * 10 + (str[i++] - '0');
 		if (result > 2147483648)
-			ft_error();
+			exit(1);
 	}
 	if ((result * sign) == 2147483648)
-		ft_error();
+		exit(1);
 	return (result * sign);
 }

@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 04:10:04 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:14:06 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/13 04:24:02 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int							ft_isdead(t_args *args);
 int							ft_strncmp(const char *s1, const char *s2,
 								size_t n);
 int							free_exit(int i, t_args *args);
+int							ft_isdigit(int c);
 t_time						ft_get_time(void);
 
 #endif
