@@ -6,23 +6,11 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:32:06 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:14:21 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ph_wait(int w_time, int p_time)
-{
-	t_time	t;
-
-	t = ft_get_time();
-	while ((int)(t - p_time) < w_time)
-	{
-		t = ft_get_time();
-		usleep(3);
-	}
-}
 
 int	ft_isdigit(int c)
 {
@@ -86,9 +74,9 @@ int	ft_atol(char *str)
 	{
 		result = result * 10 + (str[i++] - '0');
 		if (result > 2147483648)
-			exit(1);
+			return(-1);
 	}
 	if ((result * sign) == 2147483648)
-		exit(1);
+		return(-1);
 	return ((int)result * sign);
 }

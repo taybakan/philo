@@ -1,12 +1,12 @@
 NAME = philo
 
-SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c write.c azrael.c exit.c
+SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c write.c exit.c ft_calloc.c wait_and_terminate.c azrael.c
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
-FLAGS_DATARACE = -fsanitize=address
+FLAGS_DATARACE = -fsanitize=thread -g
 
 all: $(NAME)
 

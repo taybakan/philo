@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   wait_and_terminate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 21:47:40 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 20:40:15 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/17 15:14:27 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/17 18:44:57 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_free(int i, t_args *args)
+int	ph_wait(int w_time, int p_time)
 {
-	free(args);
-	return (i);
+	t_time	t;
+
+	t = ft_get_time();
+	while ((int)(t - p_time) < w_time)
+	{
+		t = ft_get_time();
+		usleep(3);
+	}
+	return (0);
 }

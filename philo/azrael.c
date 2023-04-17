@@ -5,14 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 02:51:02 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:18:52 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/17 18:45:47 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/17 20:47:25 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdead(t_args *args)
+int is_ate(t_args *args)
+{
+    if (args->philo[0]->n_eat == - 1)
+        return (1);
+    if (args->philo[0]->data->is_ate >= args->n_philo)
+        return (0);
+    return (1);
+}
+
+int	azrael(t_args *args)
 {
 	int	i;
 	int	j;
@@ -24,19 +33,19 @@ int	ft_isdead(t_args *args)
 		i = 0;
 		while (i < args->n_philo)
 		{
-			pthread_mutex_lock(args->philo[i]->plate);
+			pthread_mutex_lock(args->philo[i]->death);
 			if ((int)(ft_get_time()
-				- (args->philo[i]->last_eat)) > args->philo[i]->t_die)
-				free_exit(ph_write(args->philo[i], "is dead\n"), args);
-			pthread_mutex_unlock(args->philo[i]->plate);
-			pthread_mutex_lock(args->philo[i]->plate);
-			if (args->philo[i]->total_eat == args->philo[i]->n_eat)
-				j++;
-			pthread_mutex_unlock(args->philo[i]->plate);
-			if (j >= args->n_philo - 1)
-				return (0);
+				- (args->philo[i]->last_eat)) > args->philo[i]->t_die
+                && is_ate(args))
+            {
+                args->philo[i]->data->is_dead = 1;
+				return (ph_write(args->philo[i], "is dead\n"));
+            }
+			pthread_mutex_unlock(args->philo[i]->death);
 			i++;
 		}
+        if (!is_ate(args))
+            return (0);
 	}
 	return (0);
 }

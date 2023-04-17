@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 03:08:24 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:19:23 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:37:06 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	ft_checkinput(char **argv)
 		{
 			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][j] != ' '
 				&& argv[j][i] != '\t')
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
