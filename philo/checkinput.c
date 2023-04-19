@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gettime.c                                          :+:      :+:    :+:   */
+/*   checkinput.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 06:36:27 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/13 04:20:01 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/09 03:08:24 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/19 07:59:19 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_time	ft_get_time(void)
+int	ft_checkinput(char **argv)
 {
-	struct timeval	tv;
-	t_time			time;
+	int	i;
+	int	j;
 
-	gettimeofday(&tv, NULL);
-	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (time);
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][j] != ' '
+				&& argv[j][i] != '\t')
+			{
+				printf("invalid input\n");
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

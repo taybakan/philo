@@ -6,16 +6,16 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:32:14 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/19 06:49:45 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 08:00:36 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		ft_mutex_init(t_args *args)
+int	ft_mutex_init(t_args *args)
 {
-	int				i;
-	
+	int	i;
+
 	i = 0;
 	while (i < args->n_philo)
 	{
@@ -32,13 +32,13 @@ int		ft_mutex_init(t_args *args)
 	return (0);
 }
 
-int		ft_mutex_creat(t_args *args)
+int	ft_mutex_creat(t_args *args)
 {
 	int				i;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*w;
 	pthread_mutex_t	*pl;
-	pthread_mutex_t *dh;
+	pthread_mutex_t	*dh;
 
 	forks = malloc(sizeof(pthread_mutex_t) * args->n_philo);
 	w = malloc(sizeof(pthread_mutex_t));
@@ -54,21 +54,21 @@ int		ft_mutex_creat(t_args *args)
 		args->philo[i]->death = &dh[0];
 		i++;
 	}
-	return(ft_mutex_init(args));
+	return (ft_mutex_init(args));
 }
 
-int		ft_creat(int argc, char **argv, t_args *args)
+int	ft_creat(int argc, char **argv, t_args *args)
 {
 	t_data	*data;
-	int	i;
+	int		i;
 
 	data = malloc(sizeof(t_data));
 	args->n_philo = ft_atol(argv[1]);
 	data->is_dead = 0;
 	data->is_ate = 0;
 	args->philo = malloc(sizeof(t_philo *) * args->n_philo);
-	i = 0;
-	while (i < args->n_philo)
+	i = -1;
+	while (++i < args->n_philo)
 	{
 		args->philo[i] = malloc(sizeof(t_philo));
 		args->philo[i]->id = (i + 1);
@@ -82,7 +82,6 @@ int		ft_creat(int argc, char **argv, t_args *args)
 			args->philo[i]->n_eat = ft_atol(argv[5]);
 		else
 			args->philo[i]->n_eat = -1;
-		i++;
 	}
-	return(ft_mutex_creat(args));
+	return (ft_mutex_creat(args));
 }

@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 01:58:35 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/19 06:12:21 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/16 22:26:07 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/19 07:59:47 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ph_write(t_philo *philo, char *status)
+void	ft_bzero(void *s, size_t n)
 {
-	t_time	now;
+	size_t	i;
 
-	now = ft_get_time() - philo->t_init;	
-	pthread_mutex_lock(philo->write);
-	if (!ft_strncmp(status, "is dead\n", 8))
+	i = 0;
+	if (!n)
+		return ;
+	while (i < n)
 	{
-		printf("%llu: philo %d %s", now, philo->id, status);
-		pthread_mutex_unlock(philo->death);
-		return (1);
+		*(((unsigned char *)s) + i) = 0;
+		i++;
 	}
-	if (ft_is_dead(philo))
-		return (1);
-	printf("%llu: philo %d %s", now, philo->id, status);
-	pthread_mutex_unlock(philo->write);
-	return (0);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void *ptr;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

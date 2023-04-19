@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   gettime.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 22:26:07 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/16 22:26:49 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/09 06:36:27 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/19 08:00:10 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_bzero(void *s, size_t n)
+t_time	ft_get_time(void)
 {
-	size_t	i;
+	struct timeval	tv;
+	t_time			time;
 
-	i = 0;
-	if (!n)
-		return ;
-	while (i < n)
-	{
-		*(((unsigned char *) s) + i) = 0;
-		i++;
-	}
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (0);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
 }

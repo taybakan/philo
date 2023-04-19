@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:58 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 15:14:21 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 08:03:46 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	ft_atol(char *str)
 	{
 		result = result * 10 + (str[i++] - '0');
 		if (result > 2147483648)
-			return(-1);
+			return (-1);
 	}
 	if ((result * sign) == 2147483648)
-		return(-1);
+		return (-1);
 	return ((int)result * sign);
 }
