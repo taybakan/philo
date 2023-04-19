@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:26:54 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 20:42:46 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 05:16:38 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,17 @@ int		thread_init(t_args *args)
 		i++;
 	}
 	i = 0;
-	if (azrael(args))
-		return (0);
-	thread_join(args);
 	return(0);
 }
 
-int 	thread_join(t_args *args)
+int 	thread_detach(t_args *args)
 {
 	int		i;
 
 	i = 0;
 	while (i < args->n_philo)
 	{
-		if (pthread_join(args->philo[i]->thread, NULL))
+		if (pthread_detach(args->philo[i]->thread))
 			return(1);
 		i++;
 	}

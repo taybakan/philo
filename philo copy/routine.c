@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 03:04:04 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 19:41:22 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 06:47:52 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*routine(t_philo *philo)
 {
-	while ((philo->n_eat == -1 || philo->data->is_ate < philo->n_philo))
+	while (1)
 	{
 		if(getforks(philo))
 			break;
@@ -49,18 +49,20 @@ int		getforks(t_philo *philo)
 int		dinner(t_philo *philo)
 {
 	pthread_mutex_lock(philo->plate);
-	if (ph_write(philo, "is eating\n"))
-		return (1);
 	philo->last_eat = ft_get_time();
-	philo->total_eat++;
-	pthread_mutex_unlock(philo->plate);
-	pthread_mutex_lock(philo->ate);
-	if(philo->total_eat >= philo->n_eat && philo->finished == 0)
+	if(philo->n_eat != -1 && philo->total_eat >= philo->n_eat && philo->finished == 0)
 	{
 		philo->finished = 1;
 		philo->data->is_ate++;
+		pthread_mutex_unlock(philo->plate);
+		pthread_mutex_unlock(philo->left_fork_mutex);
+		pthread_mutex_unlock(philo->right_fork_mutex);
+		return (1);
 	}
-	pthread_mutex_unlock(philo->ate);
+	if (ph_write(philo, "is eating\n"))
+		return (1);
+	philo->total_eat++;
+	pthread_mutex_unlock(philo->plate);
 	ph_wait(philo->t_eat, ft_get_time());
 	pthread_mutex_unlock(philo->left_fork_mutex);
 	pthread_mutex_unlock(philo->right_fork_mutex);

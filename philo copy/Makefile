@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c write.c exit.c ft_calloc.c wait_and_terminate.c azrael.c
+SRCS = main.c thread_init.c utils.c let_thrb_philos.c routine.c checkinput.c gettime.c write.c ft_calloc.c wait.c azrael.c
 
 CC = gcc
 

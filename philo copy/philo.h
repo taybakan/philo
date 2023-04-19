@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 04:10:04 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 20:40:25 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 06:48:43 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_philo
 	pthread_t				thread;
 	pthread_mutex_t			*death;
 	pthread_mutex_t			*plate;
-	pthread_mutex_t			*ate;
 	pthread_mutex_t			*write;
 	pthread_mutex_t			*left_fork_mutex;
 	pthread_mutex_t			*right_fork_mutex;
@@ -70,7 +69,6 @@ int							ph_sleep(t_philo *philo);
 int							ph_write(t_philo *philo, char *status);
 int							ft_strncmp(const char *s1, const char *s2,
 								size_t n);
-int							ft_free(int i, t_args *args);
 int							ft_isdigit(int c);
 t_time						ft_get_time(void);
 void						ft_bzero(void *s, size_t n);
@@ -78,6 +76,8 @@ void						*ft_calloc(size_t count, size_t size);
 int 						is_ate(t_args *args);
 int							azrael(t_args *args);
 int							ft_is_dead(t_philo *philo);
-int 						thread_join(t_args *args);
+int 						thread_detach(t_args *args);
+void 						ft_free(t_args *args);
+int							*args_to_die(t_args *args, int i);
 
 #endif

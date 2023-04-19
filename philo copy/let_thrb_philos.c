@@ -6,7 +6,7 @@
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:32:14 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 17:24:54 by taybakan         ###   ########.fr       */
+/*   Updated: 2023/04/19 06:49:45 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ int		ft_mutex_init(t_args *args)
 	{
 		if (pthread_mutex_init(args->philo[i]->left_fork_mutex, NULL))
 			return (1);
-		if (pthread_mutex_init(args->philo[i]->ate, NULL))
-			return (1);;
 		i++;
 	}
 	if (pthread_mutex_init(args->philo[0]->write, NULL))
 		return (1);
 	if (pthread_mutex_init(args->philo[0]->plate, NULL))
-		return (1);
-	if (pthread_mutex_init(args->philo[0]->ate, NULL))
 		return (1);
 	if (pthread_mutex_init(args->philo[0]->death, NULL))
 		return (1);
@@ -42,14 +38,12 @@ int		ft_mutex_creat(t_args *args)
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*w;
 	pthread_mutex_t	*pl;
-	pthread_mutex_t	*at;
 	pthread_mutex_t *dh;
 
 	forks = malloc(sizeof(pthread_mutex_t) * args->n_philo);
 	w = malloc(sizeof(pthread_mutex_t));
 	pl = malloc(sizeof(pthread_mutex_t));
 	dh = malloc(sizeof(pthread_mutex_t));
-	at = malloc(sizeof(pthread_mutex_t) * args->n_philo);
 	i = 0;
 	while (i < args->n_philo)
 	{
@@ -57,7 +51,6 @@ int		ft_mutex_creat(t_args *args)
 		args->philo[i]->left_fork_mutex = &forks[(i + 1) % args->n_philo];
 		args->philo[i]->write = &w[0];
 		args->philo[i]->plate = &pl[0];
-		args->philo[i]->ate = &at[i];
 		args->philo[i]->death = &dh[0];
 		i++;
 	}

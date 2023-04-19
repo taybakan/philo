@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkinput.c                                       :+:      :+:    :+:   */
+/*   write.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taybakan <taybakan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 03:08:24 by taybakan          #+#    #+#             */
-/*   Updated: 2023/04/17 18:37:06 by taybakan         ###   ########.fr       */
+/*   Created: 2023/04/11 01:58:35 by taybakan          #+#    #+#             */
+/*   Updated: 2023/04/19 06:12:21 by taybakan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_checkinput(char **argv)
+int	ph_write(t_philo *philo, char *status)
 {
-	int	i;
-	int	j;
+	t_time	now;
 
-	i = 1;
-	while (argv[i])
+	now = ft_get_time() - philo->t_init;	
+	pthread_mutex_lock(philo->write);
+	if (!ft_strncmp(status, "is dead\n", 8))
 	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][j] != ' '
-				&& argv[j][i] != '\t')
-				return (1);
-			j++;
-		}
-		i++;
+		printf("%llu: philo %d %s", now, philo->id, status);
+		pthread_mutex_unlock(philo->death);
+		return (1);
 	}
+	if (ft_is_dead(philo))
+		return (1);
+	printf("%llu: philo %d %s", now, philo->id, status);
+	pthread_mutex_unlock(philo->write);
 	return (0);
 }
